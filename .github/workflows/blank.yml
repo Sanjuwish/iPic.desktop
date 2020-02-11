@@ -105,6 +105,9 @@ jobs:
 
       - name: build
         run: npm run build
+      
+      - name: Upload to tools.integem.com
+        run: npm run upload
 
       - name: get package version
         id: package
@@ -140,6 +143,3 @@ jobs:
           dir: build
           exts: '["exe", "dmg", "zip", "appimage", "deb", "rpm", "apk", "msi", "pkg", "appx"]'
           suffix: ''
-
-      - name: Upload to tools.integem.com
-        run: npm run upload
