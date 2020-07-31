@@ -1,16 +1,16 @@
 name: Release
 
-on:
-  schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron: "0 */6 * * *"
-# on: [push]
+# on:
+#   schedule:
+#     # * is a special character in YAML so you have to quote this string
+#     - cron: "0 */6 * * *"
+on: [push]
 
 jobs:
   release:
     name: Release
 
-    runs-on: macos
+    runs-on: macos-latest
 
     steps:
 
@@ -58,6 +58,9 @@ jobs:
           upload_url: ${{steps.release.outputs.upload_url}}
           github_sha: ${{github.sha}}
         run: |
+          git config --global user.email "jack.wang@integem.com"
+          git config --global user.name "Jack Wang"
+          git config --global -l
           git clone $git_cache cache
           cd cache
           echo "$upload_url" > $github_sha.txt
